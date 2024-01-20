@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Cards Center</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+
+    <h1>Flashcards by Raul</h1>
+
+    <form action="/" method="post">
+        <label for="choice">What would you like to do today?</label>
+        <select id="choice" name="choice">
+            <option value="1">My decks</option>
+            <option value="2">Add cards</option>
+            <option value="3">Create a deck</option>
+            <option value="4">Delete a deck</option>
+        </select>
+
+        <!-- Additional input fields based on user's choice -->
+        <div id="additional-fields" style="display: none;">
+            <label class="labels_for_flask_cards" for="deck_name">Deck Name:</label>
+            <input type="text" id="deck_name" name="deck_name">
+
+            <label class="labels_for_flask_cards" for="front_page">Front Page Content:</label>
+            <input type="text" id="front_page" name="front_page">
+
+            <label class="labels_for_flask_cards" for="back_page">Back Page Content:</label>
+            <input type="text" id="back_page" name="back_page">
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display results here -->
+    <div id="result">{{ message|safe }}</div>
+
+    <script>
+        // You may use JavaScript to handle form submission and display results
+        document.getElementById('choice').addEventListener('change', function () {
+            const choice = this.value;
+            const additionalFields = document.getElementById('additional-fields');
+
+            // Show additional fields based on user's choice
+            if (choice === '2' || choice === '3') {
+                additionalFields.style.display = 'block';
+            } else {
+                additionalFields.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
